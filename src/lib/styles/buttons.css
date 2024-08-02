@@ -1,0 +1,44 @@
+.button {
+    @apply text-neutral-950 focus:outline-none focus:ring-4
+    font-medium rounded-full text-sm px-5 py-2.5
+    duration-200 active:scale-110;
+}
+
+.button-gap {
+    @apply flex flex-row gap-3 justify-between items-center;
+}
+
+/* Define the button color variations for both light and dark modes */
+.button-blue {
+    @apply bg-blue-500 hover:bg-blue-600 focus:ring-blue-300 dark:text-white dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-900;
+}
+
+.button-green {
+    @apply bg-green-500 hover:bg-green-600 focus:ring-green-300 dark:text-white dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-green-900;
+}
+
+.button-red {
+    @apply bg-red-500 hover:bg-red-600 focus:ring-red-300 dark:text-white dark:bg-red-700 dark:hover:bg-red-800 dark:focus:ring-red-900;
+}
+
+.button-yellow {
+    @apply bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300 dark:text-white dark:bg-yellow-700 dark:hover:bg-yellow-800 dark:focus:ring-yellow-900;
+}
+
+.button-purple {
+    @apply bg-purple-500 hover:bg-purple-600 focus:ring-purple-300 dark:text-white dark:bg-purple-700 dark:hover:bg-purple-800 dark:focus:ring-purple-900;
+}
+
+.button-teal {
+    @apply bg-teal-500 hover:bg-teal-600 focus:ring-teal-300 dark:text-white dark:bg-teal-700 dark:hover:bg-teal-800 dark:focus:ring-teal-900;
+}
+
+.button-pink {
+    @apply bg-pink-500 hover:bg-pink-600 focus:ring-pink-300 dark:text-white dark:bg-pink-700 dark:hover:bg-pink-800 dark:focus:ring-pink-900;
+}
+
+.button-neutral {
+    @apply bg-neutral-300 hover:bg-neutral-400 focus:ring-neutral-200 dark:text-white dark:bg-neutral-800 dark:hover:bg-neutral-900 dark:focus:ring-neutral-700;
+}
+
+/* . . . three dots typing effect for loading */

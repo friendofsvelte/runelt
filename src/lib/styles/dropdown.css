@@ -1,0 +1,105 @@
+.dropdown {
+    @apply relative [&.open]:shadow-lg;
+}
+
+.dropdown-items {
+    @apply absolute left-1/2 mt-4 -translate-x-1/2 rounded-lg
+    flex flex-col items-center w-10/12 shadow-lg;
+}
+
+/* item */
+.dropdown-item {
+    @apply px-4 py-3 text-sm whitespace-nowrap first:rounded-t-lg last:rounded-b-lg
+    flex items-center gap-4 w-full;
+}
+
+.dropdown-item.neutral {
+    @apply bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100
+    hover:bg-neutral-200 dark:hover:bg-neutral-900;
+}
+
+.dropdown-item.stone {
+    @apply bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100
+    hover:bg-stone-200 dark:hover:bg-stone-900;
+}
+
+.dropdown-item.slate {
+    @apply bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100
+    hover:bg-slate-200 dark:hover:bg-slate-900;
+}
+
+.dropdown-item.yellow {
+    @apply bg-yellow-100 dark:bg-yellow-800 text-yellow-900 dark:text-yellow-100
+    hover:bg-yellow-200 dark:hover:bg-yellow-900;
+}
+
+.dropdown-item.amber {
+    @apply bg-amber-400 dark:bg-amber-600 text-amber-900 dark:text-amber-100
+    hover:bg-amber-200 dark:hover:bg-amber-900;
+}
+
+.dropdown-item.blue {
+    @apply bg-blue-100 dark:bg-blue-800 text-blue-900 dark:text-blue-100
+    hover:bg-blue-200 dark:hover:bg-blue-900;
+}
+
+.dropdown-item.emerald {
+    @apply bg-emerald-100 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100
+    hover:bg-emerald-200 dark:hover:bg-emerald-900;
+}
+
+.dropdown-item.red {
+    @apply bg-red-100 dark:bg-red-800 text-red-900 dark:text-red-100
+    hover:bg-red-200 dark:hover:bg-red-900;
+}
+
+/* title */
+
+
+.dropdown-title {
+    @apply flex items-center justify-center cursor-pointer px-3 py-2.5 rounded-lg gap-4
+    active:scale-110 duration-100 w-full [.open_&]:ring;
+}
+
+.dropdown-title.neutral {
+    @apply bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100
+    hover:bg-neutral-200 dark:hover:bg-neutral-900
+    [.open_&]:ring-neutral-400 dark:[.open_&]:ring-neutral-600;
+}
+
+.dropdown-title.stone {
+    @apply bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100
+    hover:bg-stone-200 dark:hover:bg-stone-900
+    [.open_&]:ring-stone-400 dark:[.open_&]:ring-stone-600;
+}
+
+.dropdown-title.slate {
+    @apply bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100
+    hover:bg-slate-200 dark:hover:bg-slate-900
+    [.open_&]:ring-slate-400 dark:[.open_&]:ring-slate-600;
+}
+
+.dropdown-title.yellow {
+    @apply bg-yellow-100 dark:bg-yellow-800 text-yellow-900 dark:text-yellow-100
+    hover:bg-yellow-200 dark:hover:bg-yellow-900
+    [.open_&]:ring-yellow-400 dark:[.open_&]:ring-yellow-600;
+}
+
+.dropdown-title.amber {
+    @apply bg-amber-400 dark:bg-amber-600 text-amber-900 dark:text-amber-100
+    hover:bg-amber-200 dark:hover:bg-amber-900
+    [.open_&]:ring-amber-400 dark:[.open_&]:ring-amber-600
+    [.open_&]:bg-amber-200 dark:[.open_&]:bg-amber-900;
+}
+
+.dropdown-title.blue {
+    @apply bg-blue-100 dark:bg-blue-800 text-blue-900 dark:text-blue-100
+    hover:bg-blue-200 dark:hover:bg-blue-900
+    [.open_&]:ring-blue-400 dark:[.open_&]:ring-blue-600;
+}
+
+.dropdown-title.emerald {
+    @apply bg-emerald-100 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100
+    hover:bg-emerald-200 dark:hover:bg-emerald-900
+    [.open_&]:ring-emerald-400 dark:[.open_&]:ring-emerald-600;
+}

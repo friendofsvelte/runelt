@@ -59,5 +59,8 @@
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "tailwind-merge": "^2.4.0"
+  }
 }

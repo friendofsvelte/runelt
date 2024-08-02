@@ -1,16 +1,39 @@
-<script>
-	import Accordion from '$lib/comps/Accordion.svelte';
+<script lang="ts">
+	import Dropdown from '$lib/comps/Dropdown.svelte';
+	import type { Dropitem } from '$lib/types/dropitem.js';
+	import MailboxIcon from '~icons/mdi/mailbox';
+
+	let items = [
+		{
+			title: 'Item 1',
+			href: '/item1',
+			active: false,
+			disabled: false,
+			icon: MailboxIcon
+		},
+		{
+			title: 'Item 2',
+			href: '/item2',
+			active: false,
+			disabled: false,
+			icon: MailboxIcon
+		},
+		{
+			title: 'Item 3',
+			href: '/item3',
+			active: false,
+			disabled: false,
+			icon: MailboxIcon
+		},
+		{
+			title: 'Item 4',
+			href: '/item4',
+			active: false,
+			disabled: false,
+			icon: MailboxIcon
+		}
+	] as Dropitem[];
 </script>
 
-<Accordion open accClass="accordion neutral max-w-xl">
-	Hwy
-	<Accordion open accClass="accordion blue">
-		Hey
-		<Accordion open accClass="accordion neutral max-w-xl">
-			Hwy
-			<Accordion open accClass="accordion emerald">
-				Hey
-			</Accordion>
-		</Accordion>
-	</Accordion>
-</Accordion>
+<Dropdown {items} class="dropdown w-40" titleClass="dropdown-title emerald" itemClass="dropdown-item emerald" handled>
+</Dropdown>

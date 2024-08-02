@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ChevronDown from '~icons/bi/chevron-down';
 	import type { SvelteComponent, Snippet } from 'svelte';
-	import type { Dropitem } from '$lib/types/dropitem.js';
+	import type { Dropitem } from '$lib/types/dropitem';
 
 	type Props = {
 		children?: any;
@@ -64,7 +64,7 @@
 		{#if children}
 			{@render children()}
 		{:else}
-			<div class={itemsClass}>
+			<div class={itemsClass} transition:slide>
 				{#each items as item}
 					<a
 						class="{itemClass}"

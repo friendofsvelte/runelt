@@ -14,7 +14,7 @@
 		{
 			title: 'Item 2',
 			href: '/item2',
-			active: false,
+			active: true,
 			disabled: false,
 			icon: MailboxIcon
 		},
@@ -35,5 +35,5 @@
 	] as Dropitem[];
 </script>
 
-<Dropdown {items} class="dropdown w-40" titleClass="dropdown-title red" itemClass="dropdown-item red" handled>
+<Dropdown open {items} class="dropdown w-40" titleClass="dropdown-title red" itemClass="dropdown-item amber" handled>
 </Dropdown>

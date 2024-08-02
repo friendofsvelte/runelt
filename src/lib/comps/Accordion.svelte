@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
-	import ChevronUp from '~icons/bi/chevron-up';
+	import ChevronDown from '~icons/bi/chevron-down';
 	// import { twMerge } from 'tailwind-merge';
 
 	let {
 		children, title = 'slide down', open = $bindable(false),
-		accClass = 'accordion emerald',
+		accClass = 'accordion neutral',
 		h2Class = 'accordion-h2 group',
 		contentClass = 'accordion-content',
 		buttonClass = 'accordion-button'
@@ -24,7 +24,7 @@
 			class="{buttonClass}"
 			aria-expanded="true">
 			{title}
-			<ChevronUp class="accordion-chevron {open && 'rotate-180'}" />
+			<ChevronDown class="accordion-chevron {open && 'rotate-180'}" />
 		</button>
 	</h2>
 	{#if open}

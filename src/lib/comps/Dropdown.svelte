@@ -33,9 +33,6 @@
 	}: Props = $props();
 
 	let elm: HTMLDivElement = $state();
-	if (!children && !items) {
-		throw new Error('Dropdown requires either children or items');
-	}
 
 	function onkeydown(event: KeyboardEvent) {
 		if (handled && event.key === 'Escape') {

@@ -67,6 +67,12 @@
     [.open_&]:ring-neutral-400 dark:[.open_&]:ring-neutral-600;
 }
 
+.dropdown-title.red {
+    @apply bg-red-100 dark:bg-red-800 text-red-900 dark:text-red-100
+    hover:bg-red-200 dark:hover:bg-red-900
+    [.open_&]:ring-red-400 dark:[.open_&]:ring-red-600;
+}
+
 .dropdown-title.stone {
     @apply bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-stone-100
     hover:bg-stone-200 dark:hover:bg-stone-900

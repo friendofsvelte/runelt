@@ -35,5 +35,5 @@
 	] as Dropitem[];
 </script>
 
-<Dropdown {items} class="dropdown w-40" titleClass="dropdown-title emerald" itemClass="dropdown-item emerald" handled>
+<Dropdown {items} class="dropdown w-40" titleClass="dropdown-title red" itemClass="dropdown-item red" handled>
 </Dropdown>

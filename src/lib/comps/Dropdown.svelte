@@ -32,6 +32,7 @@
 		handled = false
 	}: Props = $props();
 
+	let elm: HTMLDivElement = $state();
 	if (!children && !items) {
 		throw new Error('Dropdown requires either children or items');
 	}
@@ -41,9 +42,17 @@
 			open = false;
 		}
 	}
+
+	function onmousedown(event: MouseEvent) {
+		if (handled && !elm.contains(event.target as Node)) {
+			open = false;
+		}
+	}
 </script>
 
-<div class="{dropdownClass}" class:open>
+<svelte:window {onmousedown} />
+
+<div class="{dropdownClass}" class:open bind:this={elm}>
 	<button class={titleClass} {onclick} {onkeydown}>
 		{#if icon && icon.length === 1}
 			{@render icon()}

@@ -1,5 +1,9 @@
 .dropdown {
-    @apply relative [&.open]:shadow-lg;
+    @apply relative;
+}
+
+.dropdown.open > .dropdown-title {
+    @apply shadow-lg
 }
 
 .dropdown-items {

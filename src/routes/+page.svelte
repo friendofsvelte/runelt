@@ -35,5 +35,9 @@
 	] as Dropitem[];
 </script>
 
-<Dropdown open {items} class="dropdown w-40" titleClass="dropdown-title red" itemClass="dropdown-item amber" placement="top-start" handled>
-</Dropdown>
+
+<div class="h-[200vh] py-72 pl-72">
+	<Dropdown open {items} class="dropdown w-40" titleClass="dropdown-title red"
+						itemClass="dropdown-item amber" placement="top" handled>
+	</Dropdown>
+</div>

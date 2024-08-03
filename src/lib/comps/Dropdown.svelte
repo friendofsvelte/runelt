@@ -20,33 +20,39 @@
 		placementStyle?: string;
 		width?: number;
 	};
-	let elm: HTMLDivElement = $state();
+	let elm: HTMLDivElement | undefined = $state();
+	let itemsElm: HTMLDivElement | undefined = $state();
 
-	const MARGIN = 12;
+	function pos(default_position: string) {
+		if (elm) {
+			const rect = elm.getBoundingClientRect();
+			const overflowBottom = window.innerHeight - rect.bottom - rect.height < 0;
+			const overflowRight = window.innerWidth - rect.right < 0;
+			// const overflowTop = rect.top < 0 // compare it according to innerWidth
+			const overflowTop = rect.top < 0;
+			const overflowLeft = rect.left < 0;
+			if (overflowLeft || (overflowLeft && overflowBottom)) {
+				return `bottom: -${rect.height}px; right: -100%; transform: translate(0, 50%);`;
+			}
+			if (overflowRight || (overflowRight && overflowBottom) || overflowBottom || overflowTop) {
+				return `bottom: -${rect.height}px; left: -100%; transform: translate( 0, 50%);`;
+			}
+		}
+		return default_position;
+	}
 
 	let placements = {
+		'top': () => {
+			return pos('top: -100%; left: 50%; transform: translate(-50%, -100%);');
+		},
 		'top-end': () => {
-			// if (elm) {
-			// 	const rect = elm.getBoundingClientRect();
-			// 	return `top: ${rect.top - rect.height}px; right: -${rect.width - MARGIN}px;`;
-			// } else {
-			// 	return `top: 0; margin-left: ${MARGIN}px; right: -100%;`;
-			// } # this code is not window size aware
-			// has a priority to be shown on top right corner, if not possible, then show on bottom right corner
-			// check if it overflows on right side, if so, then show on bottom center
-
-			if (elm) {
-				const rect = elm.getBoundingClientRect();
-				const right = window.innerWidth - rect.right;
-				const top = rect.top - rect.height;
-				if (right < rect.width) {
-					return `top: ${rect.bottom}px; right: 50%; transform: translateX(50%);`;
-				} else {
-					return `top: ${top}px; right: -100%;`;
-				}
-			} else {
-				return `top: -16px; right: -100%;`;
-			}
+			return pos('top: -100%; right: 0; transform: translate(0, -100%);');
+		},
+		'top-start': () => {
+			return pos('top: -100%; left: 0; transform: translate(0, -100%);');
+		},
+		'bottom': () => {
+			return pos('bottom: -100%; float:left; left: 50%; transform: translate(-50%, 100%);');
 		}
 	};
 
@@ -88,7 +94,7 @@
 	onMount(onresize);
 </script>
 
-<svelte:window {onmousedown} {onresize} />
+<svelte:window {onmousedown} {onresize} onscroll={onresize} />
 
 <div class="{dropdownClass}" class:open bind:this={elm}>
 	<button class={titleClass} {onclick} {onkeydown}>
@@ -105,7 +111,7 @@
 		{#if children}
 			{@render children()}
 		{:else}
-			<div class="{itemsClass} duration-150" style="{placementStyle}">
+			<div class="{itemsClass} duration-150" style="{placementStyle}" bind:this={itemsElm}>
 				{#each items as item}
 					<a
 						class="{itemClass}"

@@ -5,6 +5,6 @@
 	let { children } = $props();
 </script>
 
-<div class="px-5 py-7">
+<div class="px-5 py-7 max-w-screen">
 	{@render children()}
 </div>

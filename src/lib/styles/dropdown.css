@@ -1,5 +1,5 @@
 .dropdown {
-    @apply relative;
+    @apply relative flex;
 }
 
 .dropdown.open > .dropdown-title {

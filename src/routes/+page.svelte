@@ -36,12 +36,27 @@
 </script>
 
 
-<div class="h-[1000vh] py-72 pl-72">
-	<Dropdown open {items} class="dropdown w-40" titleClass="dropdown-title red"
-						itemClass="dropdown-item amber" placement="top" handled>
-	</Dropdown>
-	<Dropdown open {items} class="dropdown w-40" titleClass="dropdown-title red"
-						title=""
-						itemClass="dropdown-item amber" placement="bottom" handled>
-	</Dropdown>
+<div class="py-72 px-28 flex items-center justify-center w-full">
+	<div class="flex flex-row gap-2 w-full max-w-xl items-center">
+		<Dropdown {items} class="dropdown w-full" titleClass="dropdown-title red whitespace-nowrap w-full"
+							title="Left End"
+							itemClass="dropdown-item amber" placement="left-end" handled track>
+		</Dropdown>
+		<div class="flex flex-col gap-2">
+			<Dropdown {items} class="dropdown w-full" titleClass="dropdown-title red whitespace-nowrap w-full"
+								title="Top Dropdown"
+								itemClass="dropdown-item amber" placement="top" handled track>
+			</Dropdown>
+			<Dropdown {items} class="dropdown" titleClass="dropdown-title red whitespace-nowrap w-full"
+								title="Bottom Dropdown"
+								itemClass="dropdown-item amber" placement="bottom" handled track>
+			</Dropdown>
+		</div>
+
+		<Dropdown {items} class="dropdown w-full" titleClass="dropdown-title red whitespace-nowrap w-full"
+							title="Right end"
+							itemClass="dropdown-item amber" placement="right-end" handled track>
+		</Dropdown>
+	</div>
+
 </div>

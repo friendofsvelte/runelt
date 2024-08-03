@@ -4,7 +4,7 @@
 	import type { Dropitem } from '$lib/types/dropitem';
 
 	type Props = {
-		children?: any;
+		children?: Snippet;
 		items?: Array<Dropitem>;
 		show?: boolean;
 		onclick?: () => void;
@@ -18,13 +18,14 @@
 		handled?: boolean;
 		placement?: keyof typeof placements;
 		placementStyle?: string;
-		width?: number;
+		track?: boolean;
+		btnSec?: Snippet
 	};
 	let elm: HTMLDivElement | undefined = $state();
 	let itemsElm: HTMLDivElement | undefined = $state();
 
 	function pos(default_position: string) {
-		if (elm && itemsElm) {
+		if (elm && itemsElm && track) {
 			const dropdownRect = elm.getBoundingClientRect();
 			const itemsRect = itemsElm.getBoundingClientRect();
 			const overflowBottom = window.innerHeight - dropdownRect.bottom - itemsRect.height < 0;
@@ -32,6 +33,13 @@
 			const overflowTop = dropdownRect.top - itemsRect.height < 0;
 			const overflowLeft = dropdownRect.left - itemsRect.width < 0;
 
+			if (overflowTop && overflowRight) {
+				console.log('heyx');
+				return `top: -${dropdownRect.height}px; right: 50%; transform: translate(50%, 55%);`;
+			}
+			if (overflowTop && overflowLeft) {
+				return `top: -${dropdownRect.height}px; left: -100%; transform: translate(0, -100%);`;
+			}
 			if (overflowLeft || (overflowLeft && overflowBottom)) {
 				return `bottom: -${dropdownRect.height}px; right: -100%; transform: translate(0, 50%);`;
 			}
@@ -70,7 +78,7 @@
 			return pos('left: -100%; top: 50%; transform: translate(-100%, -50%);');
 		},
 		'left-end': () => {
-			return pos('left: -100%; top: 0; transform: translate(-100%, 0);');
+			return pos('left: -100%; top: 0; transform: translate(0%, 0);');
 		},
 		'left-start': () => {
 			return pos('left: -100%; bottom: 0; transform: translate(-100%, 0);');
@@ -79,7 +87,7 @@
 			return pos('right: -100%; top: 50%; transform: translate(100%, -50%);');
 		},
 		'right-end': () => {
-			return pos('right: -100%; top: 0; transform: translate(100%, 0);');
+			return pos('right: -100%; top: 0; transform: translate(0%, 0);');
 		},
 		'right-start': () => {
 			return pos('right: -100%; bottom: 0; transform: translate(100%, 0);');
@@ -98,20 +106,23 @@
 		titleClass = 'dropdown-title',
 		itemsClass = 'dropdown-items amber',
 		itemClass = 'dropdown-item',
+		btnSec,
 		handled = false,
 		placement = 'top-end',
-		placementStyle = ''
+		placementStyle = '',
+		track = false
 	}: Props = $props();
 
 	let icon_rotates = {
 		'bottom': 'transform: rotate(0deg)',
 		'top': 'transform: rotate(180deg)',
-		'left': 'transform: rotate(-90deg)',
-		'right': 'transform: rotate(90deg)'
+		'left': 'transform: rotate(90deg)',
+		'right': 'transform: rotate(-90deg)'
 	};
 
-	function onresize() {
+	function handlePlacement() {
 		placementStyle = placements[placement]();
+		return '';
 	}
 
 
@@ -121,38 +132,43 @@
 		}
 	}
 
-	function onmousedown(event: MouseEvent) {
+	function handleOpen(event: FocusEvent & { currentTarget: EventTarget & Window; }) {
 		if (handled && !elm.contains(event.target as Node)) {
 			open = false;
 		}
 	}
 
-	onresize();
-	onMount(onresize);
+	handlePlacement();
+	onMount(handlePlacement);
 </script>
 
-<svelte:window {onmousedown} {onresize} onscroll={onresize} />
+<svelte:window onresize={handlePlacement} onscroll={handlePlacement} onfocusin={handleOpen} onmousedown={handleOpen} />
 
 <div class="{dropdownClass}" class:open bind:this={elm}>
 	<button class={titleClass} {onclick} {onkeydown}>
-		{#if icon && icon.length === 1}
-			{@render icon()}
-		{:else if icon}
-			<svelte:component this={icon} class="w-4" />
+		{#if btnSec}
+			{@render btnSec()}
 		{:else}
-			<div style="{icon_rotates[placement.split('-')[0]]}">
-				<ChevronDown class="w-4 duration-300 {open ? 'rotate-180' : ''}" />
-			</div>
-		{/if}
-		{#if title}
-			<span>{title}</span>
+			{#if icon && icon.length === 1}
+				{@render icon()}
+			{:else if icon}
+				<svelte:component this={icon} class="w-4" />
+			{:else}
+				<div style="{icon_rotates[placement.split('-')[0]]}">
+					<ChevronDown class="w-4 duration-300 {open ? 'rotate-180' : ''}" />
+				</div>
+			{/if}
+			{#if title}
+				<span>{title}</span>
+			{/if}
 		{/if}
 	</button>
 	{#if open}
 		{#if children}
 			{@render children()}
 		{:else}
-			<div class="{itemsClass} duration-150" style="{placementStyle}" bind:this={itemsElm}>
+			{handlePlacement()}
+			<div class="{itemsClass} duration-100" style="{placementStyle}" bind:this={itemsElm}>
 				{#each items as item}
 					<a
 						class="{itemClass}"

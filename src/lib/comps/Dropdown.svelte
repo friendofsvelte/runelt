@@ -24,18 +24,24 @@
 	let itemsElm: HTMLDivElement | undefined = $state();
 
 	function pos(default_position: string) {
-		if (elm) {
-			const rect = elm.getBoundingClientRect();
-			const overflowBottom = window.innerHeight - rect.bottom - rect.height < 0;
-			const overflowRight = window.innerWidth - rect.right < 0;
-			// const overflowTop = rect.top < 0 // compare it according to innerWidth
-			const overflowTop = rect.top < 0;
-			const overflowLeft = rect.left < 0;
+		if (elm && itemsElm) {
+			const dropdownRect = elm.getBoundingClientRect();
+			const itemsRect = itemsElm.getBoundingClientRect();
+			const overflowBottom = window.innerHeight - dropdownRect.bottom - itemsRect.height < 0;
+			const overflowRight = window.innerWidth - dropdownRect.right - itemsRect.width < 0;
+			const overflowTop = dropdownRect.top - itemsRect.height < 0;
+			const overflowLeft = dropdownRect.left - itemsRect.width < 0;
+
 			if (overflowLeft || (overflowLeft && overflowBottom)) {
-				return `bottom: -${rect.height}px; right: -100%; transform: translate(0, 50%);`;
+				return `bottom: -${dropdownRect.height}px; right: -100%; transform: translate(0, 50%);`;
 			}
-			if (overflowRight || (overflowRight && overflowBottom) || overflowBottom || overflowTop) {
-				return `bottom: -${rect.height}px; left: -100%; transform: translate( 0, 50%);`;
+			if (overflowRight || (overflowRight && overflowBottom) || overflowBottom) {
+				return `bottom: -${dropdownRect.height}px; left: -100%; transform: translate(0, 50%);`;
+			}
+			// if it overflows from top
+			if (overflowTop) {
+				// We change the placement to bottom in case of overflow from the top
+				return `bottom: -${dropdownRect.height}px; left: 50%; transform: translate(-50%, 100%);`;
 			}
 		}
 		return default_position;
@@ -53,6 +59,30 @@
 		},
 		'bottom': () => {
 			return pos('bottom: -100%; float:left; left: 50%; transform: translate(-50%, 100%);');
+		},
+		'bottom-end': () => {
+			return pos('bottom: -100%; right: 0; transform: translate(0, 100%);');
+		},
+		'bottom-start': () => {
+			return pos('bottom: -100%; left: 0; transform: translate(0, 100%);');
+		},
+		'left': () => {
+			return pos('left: -100%; top: 50%; transform: translate(-100%, -50%);');
+		},
+		'left-end': () => {
+			return pos('left: -100%; top: 0; transform: translate(-100%, 0);');
+		},
+		'left-start': () => {
+			return pos('left: -100%; bottom: 0; transform: translate(-100%, 0);');
+		},
+		'right': () => {
+			return pos('right: -100%; top: 50%; transform: translate(100%, -50%);');
+		},
+		'right-end': () => {
+			return pos('right: -100%; top: 0; transform: translate(100%, 0);');
+		},
+		'right-start': () => {
+			return pos('right: -100%; bottom: 0; transform: translate(100%, 0);');
 		}
 	};
 
@@ -72,6 +102,13 @@
 		placement = 'top-end',
 		placementStyle = ''
 	}: Props = $props();
+
+	let icon_rotates = {
+		'bottom': 'transform: rotate(0deg)',
+		'top': 'transform: rotate(180deg)',
+		'left': 'transform: rotate(-90deg)',
+		'right': 'transform: rotate(90deg)'
+	};
 
 	function onresize() {
 		placementStyle = placements[placement]();
@@ -103,9 +140,13 @@
 		{:else if icon}
 			<svelte:component this={icon} class="w-4" />
 		{:else}
-			<ChevronDown class="w-4 duration-300 {open ? 'rotate-180' : ''}" />
+			<div style="{icon_rotates[placement.split('-')[0]]}">
+				<ChevronDown class="w-4 duration-300 {open ? 'rotate-180' : ''}" />
+			</div>
 		{/if}
-		<span>{title}</span>
+		{#if title}
+			<span>{title}</span>
+		{/if}
 	</button>
 	{#if open}
 		{#if children}

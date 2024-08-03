@@ -36,8 +36,12 @@
 </script>
 
 
-<div class="h-[200vh] py-72 pl-72">
+<div class="h-[1000vh] py-72 pl-72">
 	<Dropdown open {items} class="dropdown w-40" titleClass="dropdown-title red"
 						itemClass="dropdown-item amber" placement="top" handled>
+	</Dropdown>
+	<Dropdown open {items} class="dropdown w-40" titleClass="dropdown-title red"
+						title=""
+						itemClass="dropdown-item amber" placement="bottom" handled>
 	</Dropdown>
 </div>

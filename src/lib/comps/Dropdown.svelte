@@ -1,11 +1,11 @@
 <script lang="ts">
 	import ChevronDown from '~icons/bi/chevron-down';
 	import { type SvelteComponent, type Snippet, onMount } from 'svelte';
-	import type { Dropitem } from '$lib/types/dropitem';
+	import type { DropItem } from '$lib/types/dropItem';
 
 	type Props = {
 		children?: Snippet;
-		items?: Array<Dropitem>;
+		items?: Array<DropItem>;
 		show?: boolean;
 		onclick?: () => void;
 		title?: string;

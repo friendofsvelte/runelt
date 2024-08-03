@@ -1,6 +1,6 @@
 import type { SvelteComponent } from 'svelte';
 
-export type Dropitem = {
+export type DropItem = {
 	title: string;
 	href: string;
 	active: boolean;

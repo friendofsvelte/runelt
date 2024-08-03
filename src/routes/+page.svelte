@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Dropdown from '$lib/comps/Dropdown.svelte';
-	import type { Dropitem } from '$lib/types/dropitem.js';
+	import type { DropItem } from '$lib/types/dropItem.js';
 	import MailboxIcon from '~icons/mdi/mailbox';
 
 	let items = [
@@ -32,7 +32,7 @@
 			disabled: false,
 			icon: MailboxIcon
 		}
-	] as Dropitem[];
+	] as DropItem[];
 </script>
 
 

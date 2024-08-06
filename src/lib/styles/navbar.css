@@ -1,0 +1,82 @@
+.navbar {
+    @apply flex flex-row justify-between items-center backdrop-blur-md
+    /*border-t-stone-700 dark:border-t-indigo-300*/
+    /*bg-neutral-50 dark:bg-neutral-900*/
+    /*border-neutral-200 dark:border-neutral-800;*/
+}
+
+.navbar-sizing {
+    @apply h-14 w-full px-4 z-40;
+}
+
+.navbar.neutral {
+    @apply bg-neutral-50 dark:bg-neutral-900;
+}
+
+.navbar.neutral-border {
+    @apply border-neutral-200 dark:border-neutral-800
+    border-t-stone-700 dark:border-t-neutral-300;
+}
+
+.navbar.stone {
+    @apply bg-stone-50 dark:bg-stone-900;
+}
+
+.navbar.stone-border {
+    @apply border-stone-200 dark:border-stone-800
+    border-t-stone-700 dark:border-t-stone-300;
+}
+
+.navbar.slate {
+    @apply bg-slate-50 dark:bg-slate-900;
+}
+
+.navbar.slate-border {
+    @apply border-slate-200 dark:border-slate-800
+    border-t-stone-700 dark:border-t-slate-300;
+}
+
+.navbar.yellow {
+    @apply bg-yellow-50 dark:bg-yellow-900;
+}
+
+.navbar.yellow-border {
+    @apply border-yellow-200 dark:border-yellow-800
+    border-t-stone-700 dark:border-t-yellow-300;
+}
+
+.navbar.amber {
+    @apply bg-amber-50 dark:bg-amber-900;
+}
+
+.navbar.amber-border {
+    @apply border-amber-200 dark:border-amber-800
+    border-t-stone-700 dark:border-t-amber-300;
+}
+
+.navbar.blue {
+    @apply bg-blue-50 dark:bg-blue-900;
+}
+
+.navbar.blue-border {
+    @apply border-blue-200 dark:border-blue-800
+    border-t-stone-700 dark:border-t-blue-300;
+}
+
+.navbar.red {
+    @apply bg-red-50 dark:bg-red-900;
+}
+
+.navbar.red-border {
+    @apply border-red-200 dark:border-red-800
+    border-t-stone-700 dark:border-t-red-300;
+}
+
+.navbar.emerald {
+    @apply bg-emerald-50 dark:bg-emerald-900;
+}
+
+.navbar.emerald-border {
+    @apply border-emerald-200 dark:border-emerald-800
+    border-t-stone-700 dark:border-t-emerald-300;
+}

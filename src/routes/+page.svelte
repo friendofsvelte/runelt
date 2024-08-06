@@ -56,7 +56,17 @@
 		<Dropdown {items} class="dropdown w-full" titleClass="dropdown-title red whitespace-nowrap w-full"
 							title="Right end"
 							itemClass="dropdown-item amber" placement="right-end" handled track>
+			{#snippet icon(open, style)}
+			<div {style}>
+				<MailboxIcon class="{open ? 'rotate-180' : ''} w-6 h-6 duration-300" />
+			</div>
+			{/snippet}
 		</Dropdown>
 	</div>
+
+</div>
+
+
+<div class="h-screen">
 
 </div>

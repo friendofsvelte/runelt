@@ -9,7 +9,7 @@
 		show?: boolean;
 		onclick?: () => void;
 		title?: string;
-		icon?: SvelteComponent | Snippet;
+		icon?: Snippet;
 		class?: string;
 		titleClass?: string;
 		itemsClass?: string;
@@ -138,6 +138,8 @@
 		}
 	}
 
+	let divStyle = $derived(icon_rotates[placement.split('-')[0] as 'bottom' | 'top' | 'left' | 'right']);
+
 	handlePlacement();
 	onMount(handlePlacement);
 </script>
@@ -149,12 +151,10 @@
 		{#if btnSec}
 			{@render btnSec()}
 		{:else}
-			{#if icon && icon.length === 1}
-				{@render icon()}
-			{:else if icon}
-				<svelte:component this={icon} class="w-4" />
+			{#if icon}
+				{@render icon(open, divStyle)}
 			{:else}
-				<div style="{icon_rotates[placement.split('-')[0]]}">
+				<div style="{divStyle}">
 					<ChevronDown class="w-4 duration-300 {open ? 'rotate-180' : ''}" />
 				</div>
 			{/if}

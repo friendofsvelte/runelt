@@ -1,6 +1,5 @@
 <script lang="ts">
-	import Dropdown from '$lib/comps/Dropdown.svelte';
-	import type { DropItem } from '$lib/types/dropItem.js';
+	import Dropdown, { type DropItem } from '$lib/comps/Dropdown.svelte';
 	import MailboxIcon from '~icons/mdi/mailbox';
 
 	let items = [
@@ -57,9 +56,9 @@
 							title="Right end"
 							itemClass="dropdown-item amber" placement="right-end" handled track>
 			{#snippet icon(open, style)}
-			<div {style}>
-				<MailboxIcon class="{open ? 'rotate-180' : ''} w-6 h-6 duration-300" />
-			</div>
+				<div {style}>
+					<MailboxIcon class="{open ? 'rotate-180' : ''} w-6 h-6 duration-300" />
+				</div>
 			{/snippet}
 		</Dropdown>
 	</div>

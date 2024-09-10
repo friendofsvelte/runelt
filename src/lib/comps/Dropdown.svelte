@@ -1,15 +1,22 @@
-<script lang="ts">
-	import ChevronDown from '~icons/bi/chevron-down';
-	import { type SvelteComponent, type Snippet, onMount } from 'svelte';
-	import type { DropItem } from '$lib/types/dropItem';
+<script lang="ts" context="module">
+	import { type Snippet } from 'svelte';
+	import type { SvelteComponent } from 'svelte';
 
-	type Props = {
+	export interface DropItem {
+		title: string;
+		href: string;
+		active: boolean;
+		disabled: boolean;
+		icon?: SvelteComponent | unknown;
+	}
+
+	export interface DropdownProps {
 		children?: Snippet;
-		items?: Array<DropItem>;
 		show?: boolean;
 		onclick?: () => void;
 		title?: string;
 		icon?: Snippet;
+		items?: DropItem[];
 		class?: string;
 		titleClass?: string;
 		itemsClass?: string;
@@ -19,8 +26,13 @@
 		placement?: keyof typeof placements;
 		placementStyle?: string;
 		track?: boolean;
-		btnSec?: Snippet
-	};
+		btnSec?: Snippet;
+	}
+</script>
+<script lang="ts">
+	import ChevronDown from 'virtual:icons/bi/chevron-down';
+	import { onMount } from 'svelte';
+
 	let elm: HTMLDivElement | undefined = $state();
 	let itemsElm: HTMLDivElement | undefined = $state();
 
@@ -34,7 +46,6 @@
 			const overflowLeft = dropdownRect.left - itemsRect.width < 0;
 
 			if (overflowTop && overflowRight) {
-				console.log('heyx');
 				return `top: -${dropdownRect.height}px; right: 50%; transform: translate(50%, 55%);`;
 			}
 			if (overflowTop && overflowLeft) {
@@ -111,9 +122,9 @@
 		placement = 'top-end',
 		placementStyle = '',
 		track = false
-	}: Props = $props();
+	}: DropdownProps = $props();
 
-	let icon_rotates = {
+	const icon_rotates = {
 		'bottom': 'transform: rotate(0deg)',
 		'top': 'transform: rotate(180deg)',
 		'left': 'transform: rotate(90deg)',
